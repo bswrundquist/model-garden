@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.venv/
+venv/
+.python-version
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Outputs (anywhere in the tree)
+**/outputs/
+
+# CatBoost
+**/catboost_info/
+
+# Environment / secrets
+.env
+.env.*
+.envrc
+*.pem
+*.key
+
+# Docker
+*.tar
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
