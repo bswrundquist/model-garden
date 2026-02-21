@@ -1,0 +1,19 @@
+[project]
+name = "feature-engineering"
+version = "0.1.0"
+description = "Feature engineering & selection seedling for model-garden"
+requires-python = ">=3.11"
+dependencies = [
+    "polars>=1.0",
+    "pyarrow>=15.0",
+    "gcsfs>=2024.2",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scikit-learn>=1.4",
+    "scipy>=1.12",
+    "category-encoders>=2.6",
+    "matplotlib>=3.8",
+    "papermill>=2.6",
+    "nbconvert>=7.14",
+    "ipykernel>=6.29",
+]
