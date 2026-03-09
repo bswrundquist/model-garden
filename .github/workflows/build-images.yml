@@ -7,12 +7,28 @@ on:
       - "seedlings/classification_catboost/**"
       - "seedlings/feature_engineering/**"
       - "seedlings/regression_catboost/**"
+      - "seedlings/finetuning_unsloth/**"
+      - "seedlings/boosting_comparison/**"
+      - "seedlings/sklearn_comparison/**"
+      - "seedlings/time_series_forecasting/**"
+      - "seedlings/anomaly_detection/**"
+      - "seedlings/imbalanced_classification/**"
+      - "seedlings/clustering_comparison/**"
+      - "seedlings/text_classification/**"
   pull_request:
     branches: [main]
     paths:
       - "seedlings/classification_catboost/**"
       - "seedlings/feature_engineering/**"
       - "seedlings/regression_catboost/**"
+      - "seedlings/finetuning_unsloth/**"
+      - "seedlings/boosting_comparison/**"
+      - "seedlings/sklearn_comparison/**"
+      - "seedlings/time_series_forecasting/**"
+      - "seedlings/anomaly_detection/**"
+      - "seedlings/imbalanced_classification/**"
+      - "seedlings/clustering_comparison/**"
+      - "seedlings/text_classification/**"
 
 env:
   REGISTRY: ghcr.io
@@ -28,6 +44,14 @@ jobs:
       classification_catboost: ${{ steps.filter.outputs.classification_catboost }}
       feature_engineering: ${{ steps.filter.outputs.feature_engineering }}
       regression_catboost: ${{ steps.filter.outputs.regression_catboost }}
+      finetuning_unsloth: ${{ steps.filter.outputs.finetuning_unsloth }}
+      boosting_comparison: ${{ steps.filter.outputs.boosting_comparison }}
+      sklearn_comparison: ${{ steps.filter.outputs.sklearn_comparison }}
+      time_series_forecasting: ${{ steps.filter.outputs.time_series_forecasting }}
+      anomaly_detection: ${{ steps.filter.outputs.anomaly_detection }}
+      imbalanced_classification: ${{ steps.filter.outputs.imbalanced_classification }}
+      clustering_comparison: ${{ steps.filter.outputs.clustering_comparison }}
+      text_classification: ${{ steps.filter.outputs.text_classification }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -40,6 +64,22 @@ jobs:
               - 'seedlings/feature_engineering/**'
             regression_catboost:
               - 'seedlings/regression_catboost/**'
+            finetuning_unsloth:
+              - 'seedlings/finetuning_unsloth/**'
+            boosting_comparison:
+              - 'seedlings/boosting_comparison/**'
+            sklearn_comparison:
+              - 'seedlings/sklearn_comparison/**'
+            time_series_forecasting:
+              - 'seedlings/time_series_forecasting/**'
+            anomaly_detection:
+              - 'seedlings/anomaly_detection/**'
+            imbalanced_classification:
+              - 'seedlings/imbalanced_classification/**'
+            clustering_comparison:
+              - 'seedlings/clustering_comparison/**'
+            text_classification:
+              - 'seedlings/text_classification/**'
 
   build-classification-catboost:
     needs: changes
@@ -121,6 +161,230 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: seedlings/regression_catboost
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-finetuning-unsloth:
+    needs: changes
+    if: needs.changes.outputs.finetuning_unsloth == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/finetuning_unsloth
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/finetuning_unsloth
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-boosting-comparison:
+    needs: changes
+    if: needs.changes.outputs.boosting_comparison == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/boosting_comparison
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/boosting_comparison
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-sklearn-comparison:
+    needs: changes
+    if: needs.changes.outputs.sklearn_comparison == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/sklearn_comparison
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/sklearn_comparison
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-time-series-forecasting:
+    needs: changes
+    if: needs.changes.outputs.time_series_forecasting == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/time_series_forecasting
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/time_series_forecasting
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-anomaly-detection:
+    needs: changes
+    if: needs.changes.outputs.anomaly_detection == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/anomaly_detection
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/anomaly_detection
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-imbalanced-classification:
+    needs: changes
+    if: needs.changes.outputs.imbalanced_classification == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/imbalanced_classification
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/imbalanced_classification
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-clustering-comparison:
+    needs: changes
+    if: needs.changes.outputs.clustering_comparison == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/clustering_comparison
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/clustering_comparison
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-text-classification:
+    needs: changes
+    if: needs.changes.outputs.text_classification == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/seedlings/text_classification
+          tags: |
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: seedlings/text_classification
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
