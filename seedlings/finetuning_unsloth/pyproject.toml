@@ -1,0 +1,20 @@
+[project]
+name = "finetuning-unsloth"
+version = "0.1.0"
+description = "LLM fine-tuning seedling with Unsloth and QLoRA for model-garden"
+requires-python = ">=3.11"
+dependencies = [
+    "unsloth>=2024.12",
+    "torch>=2.2",
+    "transformers>=4.51",
+    "trl<=0.24",
+    "datasets>=3.0",
+    "peft>=0.18",
+    "accelerate>=0.34",
+    "bitsandbytes>=0.43",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "papermill>=2.6",
+    "nbconvert>=7.14",
+    "ipykernel>=6.29",
+]
