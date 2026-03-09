@@ -1,0 +1,20 @@
+[project]
+name = "text-classification"
+version = "0.1.0"
+description = "Text classification seedling for model-garden"
+requires-python = ">=3.11"
+dependencies = [
+    "polars>=1.0",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "lightgbm>=4.0",
+    "sentence-transformers>=3.0",
+    "optuna>=3.6",
+    "matplotlib>=3.8",
+    "papermill>=2.6",
+    "nbconvert>=7.14",
+    "pyarrow>=15.0",
+    "gcsfs>=2024.2",
+    "ipykernel>=6.29",
+]

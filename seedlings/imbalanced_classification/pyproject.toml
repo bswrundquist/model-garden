@@ -1,0 +1,23 @@
+[project]
+name = "imbalanced-classification"
+version = "0.1.0"
+description = "Imbalanced classification strategies seedling for model-garden"
+requires-python = ">=3.11"
+dependencies = [
+    "polars>=1.0",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "imbalanced-learn>=0.12",
+    "catboost>=1.2",
+    "xgboost>=2.0",
+    "lightgbm>=4.0",
+    "optuna>=3.6",
+    "matplotlib>=3.8",
+    "shap>=0.45",
+    "papermill>=2.6",
+    "nbconvert>=7.14",
+    "pyarrow>=15.0",
+    "gcsfs>=2024.2",
+    "ipykernel>=6.29",
+]
